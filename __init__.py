@@ -31,6 +31,7 @@ class NumericKeySkill(OVOSSkill):
 
     @intent_handler('shortcuts.intent')
     
+    
     def listen_for_keyboard_events(self):
         try:
             while True:
@@ -42,13 +43,13 @@ class NumericKeySkill(OVOSSkill):
                             key_value = event.value
 
                             if key_value == 1:  # Key pressed (0-9)
-                                if key_code >= ecodes.KEY_0 and key_code <= ecodes.KEY_KP9:
+                                if key_code >= ecodes.KEY_KP0 and key_code <= ecodes.KEY_KP9:
                                     digit = key_code - ecodes.KEY_KP0  # Get the pressed digit
                                     self.handle_numeric_key(digit)
         except Exception as e:
             self.log.error(f"Error reading keyboard input: {str(e)}")
-   if key_code == ecodes.KEY_KP0:
-                                    self.handle_numeric_key(0)
+
+
     def handle_numeric_key(self, digit):
         # Perform specific actions based on the pressed digit
         if digit == 0:
