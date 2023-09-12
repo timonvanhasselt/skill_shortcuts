@@ -34,7 +34,7 @@ class NumericKeySkill(OVOSSkill):
     def listen_for_keyboard_events(self):
         try:
             while True:
-                r, _, _ = select([self.keyboard], [], [], 0.1)  # Timeout of 0.1 seconds
+                r, _, _ = select([self.keyboard.fd], [], [], 0.1)  # Use the fd (file descriptor) of the InputDevice
                 if r:
                     for event in self.keyboard.read():
                         if event.type == ecodes.EV_KEY:
