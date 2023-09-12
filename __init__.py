@@ -8,6 +8,7 @@ class NumericKeySkill(OVOSSkill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.keyboard = None
+        self.keyboard_fd = None  # Store the file descriptor
 
     def runtime_requirements(self):
         return RuntimeRequirements(
@@ -25,9 +26,11 @@ class NumericKeySkill(OVOSSkill):
     def initialize(self):
         try:
             # Find the keyboard device (change 'eventX' to match your keyboard)
-            self.keyboard = InputDevice('/dev/input/event5')
+            self.keyboard = InputDevice('/dev/input/eventX')
+            self.keyboard_fd = self.keyboard.fd  # Get the file descriptor
         except Exception as e:
             self.log.error(f"Error opening the keyboard device: {str(e)}")
+
 
     @intent_handler('shortcuts.intent')
     
@@ -35,7 +38,7 @@ class NumericKeySkill(OVOSSkill):
     def listen_for_keyboard_events(self):
         try:
             while True:
-                r, _, _ = select([self.keyboard], [], [], 0.1)  # Timeout of 0.1 seconds
+                r, _, _ = select([self.keyboard_fd], [], [], 0.1)  # Timeout of 0.1 seconds
                 if r:
                     for event in self.keyboard.read():
                         if event.type == ecodes.EV_KEY:
