@@ -8,7 +8,6 @@ class NumericKeySkill(OVOSSkill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.keyboard = None
-        self.keyboard_fd = None  # Store the file descriptor
 
     def runtime_requirements(self):
         return RuntimeRequirements(
@@ -26,32 +25,28 @@ class NumericKeySkill(OVOSSkill):
     def initialize(self):
         try:
             # Find the keyboard device (change 'eventX' to match your keyboard)
-            self.keyboard = InputDevice('/dev/input/eventX')
-            self.keyboard_fd = self.keyboard.fd  # Get the file descriptor
+            self.keyboard = InputDevice('/dev/input/event5')
         except Exception as e:
             self.log.error(f"Error opening the keyboard device: {str(e)}")
 
-
     @intent_handler('shortcuts.intent')
-    
     
     def listen_for_keyboard_events(self):
         try:
             while True:
-                r, _, _ = select([self.keyboard_fd], [], [], 0.1)  # Timeout of 0.1 seconds
+                r, _, _ = select([self.keyboard], [], [], 0.1)  # Timeout of 0.1 seconds
                 if r:
                     for event in self.keyboard.read():
                         if event.type == ecodes.EV_KEY:
                             key_code = event.code
                             key_value = event.value
 
-                            if key_value == 1:  # Key pressed (0-9)
+                            if key_value == 1:  # Key pressed (KP0-KP9)
                                 if key_code >= ecodes.KEY_KP0 and key_code <= ecodes.KEY_KP9:
                                     digit = key_code - ecodes.KEY_KP0  # Get the pressed digit
                                     self.handle_numeric_key(digit)
         except Exception as e:
             self.log.error(f"Error reading keyboard input: {str(e)}")
-
 
     def handle_numeric_key(self, digit):
         # Perform specific actions based on the pressed digit
