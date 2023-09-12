@@ -25,7 +25,7 @@ class NumericKeySkill(OVOSSkill):
     def initialize(self):
         try:
             # Find the keyboard device (change 'eventX' to match your keyboard)
-            self.keyboard = InputDevice('/dev/input/eventX')
+            self.keyboard = InputDevice('/dev/input/event5')
         except Exception as e:
             self.log.error(f"Error opening the keyboard device: {str(e)}")
 
