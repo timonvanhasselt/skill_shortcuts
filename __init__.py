@@ -2,7 +2,6 @@ import evdev
 from evdev import InputDevice, ecodes
 from select import select
 from ovos_workshop.skills import OVOSSkill
-from ovos_utils.intents import IntentBuilder
 from ovos_workshop.decorators import intent_handler
 
 class NumericKeySkill(OVOSSkill):
@@ -10,7 +9,6 @@ class NumericKeySkill(OVOSSkill):
         super().__init__(*args, **kwargs)
         self.keyboard = None
 
-    @classproperty
     def runtime_requirements(self):
         return RuntimeRequirements(
             internet_before_load=False,
@@ -31,6 +29,8 @@ class NumericKeySkill(OVOSSkill):
         except Exception as e:
             self.log.error(f"Error opening the keyboard device: {str(e)}")
 
+    @intent_handler('shortcuts.intent')
+    
     def listen_for_keyboard_events(self):
         try:
             while True:
