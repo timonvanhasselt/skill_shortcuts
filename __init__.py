@@ -26,8 +26,8 @@ class NumericKeySkill(OVOSSkill):
     @intent_handler('shortcuts.intent')
     
     def listen_for_keyboard_events(self):
-      #  try:
-       #     while True:
+      try:
+       while True:
                 r, w, x = select([self.keyboard], [], [], 0)
                 if r:
                     for event in self.keyboard.read():
