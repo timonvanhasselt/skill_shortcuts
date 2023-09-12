@@ -7,7 +7,7 @@ from ovos_workshop.decorators import intent_handler
 class NumericKeySkill(OVOSSkill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.keyboard = None
+        self.keyboard = InputDevice('/dev/input/event5') 
 
     def runtime_requirements(self):
         return RuntimeRequirements(
@@ -22,12 +22,12 @@ class NumericKeySkill(OVOSSkill):
             no_gui_fallback=True,
         )
 
-    def initialize(self):
-        try:
-            # Find the keyboard device (change 'eventX' to match your keyboard)
-            self.keyboard = InputDevice('/dev/input/event5')
-        except Exception as e:
-            self.log.error(f"Error opening the keyboard device: {str(e)}")
+#    def initialize(self):
+#        try:
+#            # Find the keyboard device (change 'eventX' to match your keyboard)
+#            self.keyboard = InputDevice('/dev/input/event5')
+#        except Exception as e:
+#            self.log.error(f"Error opening the keyboard device: {str(e)}")
 
     @intent_handler('shortcuts.intent')
     
