@@ -58,19 +58,6 @@ class NumericKeySkill(OVOSSkill):
             # Add your action for 1 here
         # Repeat for digits 2 to 9
 
-    @intent_handler(IntentBuilder("ThankYouIntent").require("ThankYouKeyword"))
-    def handle_thank_you_intent(self, message):
-        self.speak_dialog("welcome")
-
-    @intent_handler("HowAreYou.intent")
-    def handle_how_are_you_intent(self, message):
-        self.speak_dialog("how.are.you")
-
-    @intent_handler(IntentBuilder("HelloWorldIntent").require("HelloWorldKeyword"))
-    def handle_hello_world_intent(self, message):
-        self.log.info("There are five types of log messages: info, debug, warning, error, and exception.")
-        self.speak_dialog("hello.world")
-
     def stop(self):
         pass
 
