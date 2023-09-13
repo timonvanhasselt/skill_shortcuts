@@ -7,7 +7,7 @@ from ovos_workshop.decorators import intent_handler
 class NumericKeySkill(OVOSSkill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.keyboard = InputDevice('/dev/input/event5') 
+        self.keyboard = InputDevice('/dev/input/event7') 
 
     def runtime_requirements(self):
         return RuntimeRequirements(
