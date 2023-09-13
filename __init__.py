@@ -40,6 +40,9 @@ class NumericKeySkill(OVOSSkill):
                                     digit = key_code - ecodes.KEY_KP0  # Get the pressed digit
                                     self.handle_numeric_key(digit)
 
+            except Exception as e:
+            self.log.error(f"Error reading keyboard input: {str(e)}")
+
     def handle_numeric_key(self, digit):
         # Perform specific actions based on the pressed digit
         if digit == 0:
