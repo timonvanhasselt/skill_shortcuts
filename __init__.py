@@ -23,12 +23,6 @@ class NumericKeySkill(OVOSSkill):
             no_gui_fallback=True,
         )
 
-    def initialize(self):
-        try:
-            # Find the keyboard device (change 'eventX' to match your keyboard)
-            self.keyboard = InputDevice('/dev/input/event5')
-        except Exception as e:
-            self.log.error(f"Error opening the keyboard device: {str(e)}")
 
     @intent_handler('shortcuts.intent')
     
