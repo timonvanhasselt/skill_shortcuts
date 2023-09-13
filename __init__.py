@@ -3,6 +3,8 @@ from evdev import InputDevice, ecodes
 from select import select
 from ovos_workshop.skills import OVOSSkill
 from ovos_workshop.decorators import intent_handler
+from ovos_utils.log import LOG
+
 
 class NumericKeySkill(OVOSSkill):
     def __init__(self, *args, **kwargs):
@@ -47,9 +49,11 @@ class NumericKeySkill(OVOSSkill):
         # Perform specific actions based on the pressed digit
         if digit == 0:
             self.speak("You pressed 0")
+               LOG.info("0 pressed")
             # Add your action for 0 here
         elif digit == 1:
             self.speak("You pressed 1")
+               LOG.info("1 pressed")
             # Add your action for 1 here
         # Repeat for digits 2 to 9
 
