@@ -4,11 +4,7 @@ from ovos_workshop.skills import OVOSSkill
 from ovos_workshop.decorators import intent_handler
 from ovos_utils.log import LOG
 from ovos_bus_client.message import Message
-#from ovos_workshop.skills.common_play import OVOSCommonPlaybackSkill 
 import time
-#from ovos_workshop.decorators.ocp import ocp_play, ocp_next, ocp_pause, ocp_resume, ocp_search, \
-#    ocp_previous, ocp_featured_media, MediaType, MediaState, MatchConfidence, \
-#    PlaybackType, PlaybackMode, PlayerState, LoopState, TrackState
 from ovos_bus_client.apis.ocp import OCPInterface
 from ovos_plugin_common_play.ocp import MediaType, PlaybackType
 
