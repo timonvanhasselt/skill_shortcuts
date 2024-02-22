@@ -16,7 +16,7 @@ class NumericKeySkill(OVOSSkill):
     def initialize(self):
         # Initialize the OCP audio service with the bus
         self.audio = OCPInterface(self.bus)
-        self.keyboard_device = InputDevice("/dev/input/event8")  # Make it an instance variable
+        self.keyboard_device = InputDevice("/dev/input/event6")  # Use `python -m evdev.evtest` to get the event number
         self.menu1 = "https://i.ibb.co/RYZjzY7/menu1.jpg"
         self.menu2 = "https://i.ibb.co/FKrHHTp/menu2.jpg"
         self.menu2a = "https://i.ibb.co/mh8zWpB/Scherm-2.jpg"
