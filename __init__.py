@@ -9,7 +9,7 @@ import time
 #from ovos_workshop.decorators.ocp import ocp_play, ocp_next, ocp_pause, ocp_resume, ocp_search, \
 #    ocp_previous, ocp_featured_media, MediaType, MediaState, MatchConfidence, \
 #    PlaybackType, PlaybackMode, PlayerState, LoopState, TrackState
-from ovos_utils.skills.audioservice import OCPInterface
+from ovos_bus_client.apis.ocp import OCPInterface
 from ovos_plugin_common_play.ocp import MediaType, PlaybackType
 
 
