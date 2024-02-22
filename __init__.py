@@ -12,8 +12,11 @@ from ovos_plugin_common_play.ocp import MediaType, PlaybackType
 class NumericKeySkill(OVOSSkill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+    def initialize(self):
+        # Initialize the OCP audio service with the bus
+        self.audio = OCPInterface(self.bus)
         self.keyboard_device = InputDevice("/dev/input/event8")  # Make it an instance variable
-#       self.image = "/UI/visio_scherm.jpg"
         self.menu1 = "https://i.ibb.co/RYZjzY7/menu1.jpg"
         self.menu2 = "https://i.ibb.co/FKrHHTp/menu2.jpg"
         self.menu2a = "https://i.ibb.co/mh8zWpB/Scherm-2.jpg"
@@ -32,10 +35,6 @@ class NumericKeySkill(OVOSSkill):
                 "length": 0
             }
         ]
-
-    def initialize(self):
-        # Initialize the OCP audio service with the bus
-        self.audio = OCPInterface(self.bus)
 
 
     def runtime_requirements(self):
